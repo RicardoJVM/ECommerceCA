@@ -12,6 +12,8 @@ import Observation
 @MainActor
 final class CartViewModel {
     var items: [CartItem] = []
+    var isLoading: Bool = false
+    var errorMessage: String? = nil
     
     private let getCartUseCase: GetCartUseCase
 
@@ -20,9 +22,17 @@ final class CartViewModel {
     }
 
     func loadCart() {
+        isLoading = true
+        errorMessage = nil
+        
         Task {
-            // Sintaxis súper limpia: se llama como una función
-            self.items = try await getCartUseCase()
+            do {
+                self.items = try await getCartUseCase()
+                self.isLoading = false
+            } catch {
+                self.errorMessage = "Error al cargar el carrito"
+                self.isLoading = false
+            }
         }
     }
 }

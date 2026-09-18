@@ -12,7 +12,7 @@ struct CartMainView: View {
 
     // Inyección de dependencias mediante la composición de Clean Architecture
     init(viewModel: CartViewModel) {
-        _viewModel = State(initialValue: viewModel)
+        self._viewModel = State(wrappedValue: viewModel)
     }
 
     var body: some View {
