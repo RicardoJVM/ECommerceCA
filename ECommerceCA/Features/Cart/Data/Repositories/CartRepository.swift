@@ -10,7 +10,7 @@ import Foundation
 final class CartRepository: CartRepositoryProtocol {
     private let remoteDataSource: CartRemoteDataSourceProtocol
 
-    init(remoteDataSource: CartRemoteDataSourceProtocol = CartRemoteDataSource()) {
+    init(remoteDataSource: CartRemoteDataSourceProtocol) {
         self.remoteDataSource = remoteDataSource
     }
 
